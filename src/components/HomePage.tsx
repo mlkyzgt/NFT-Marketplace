@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+interface NFT {
+  id: number;
+  imageUrl: string;
+  name: string;
+  description: string;
+  price: number;
+}
+
 const HomePage = () => {
   const numberOfNFTs = 10;
-  const [nfts, setNfts] = useState([]);
+  const [nfts, setNfts] = useState<NFT[]>([]); // Specify type for nfts
   const [loading, setLoading] = useState(true);
   const [sortByPriceAsc, setSortByPriceAsc] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -43,7 +51,7 @@ const HomePage = () => {
     setSortByPriceAsc(!sortByPriceAsc);
   };
 
-  const handleSearch = (event) => {
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
 
